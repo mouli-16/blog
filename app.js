@@ -1,21 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
-
+const port = process.env.PORT || 3000;
 const app = express();
+const dotenv = require("dotenv");
 
 // middleware
 app.use(express.static('public'));
 app.use(express.json());
 
+dotenv.config();
 
 // view engine
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://mouli:blog321@cluster0.encw5.mongodb.net/learningDB?retryWrites=true&w=majority';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000))
+
+mongoose.connect(process.env.dbURL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+  .then((result) => app.listen(port))
   .catch((err) => console.log(err));
 
 // routes
