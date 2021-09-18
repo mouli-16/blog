@@ -45,15 +45,15 @@ app.get('/blogs/create', (req, res) => {
   res.render('create', { title: 'Create a new blog' });
 });
 
-// app.get('/blogs',(req,res)=>{
-//   Blog.find().sort({createAt:-1})
-//   .then((result)=>{
-//     res.render('index', {title:'All Blogs', blogs: result})
-//   })
-//   .catch((err)=>{
-//     console.log(err)
-//   })
-// })
+app.get('/blogs',(req,res)=>{
+  Blog.find().sort({createAt:-1})
+  .then((result)=>{
+    res.render('index', {title:'All Blogs', blogs: result})
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+})
 
 app.get('/blogs/:id',(req,res)=>{
   const id = req.params.id
